@@ -7,7 +7,7 @@ using VRC.Udon;
 public class WorldManager : UdonSharpBehaviour
 {
     public GameObject backPackHolder;
-    public bool isSpeedAdjustmentByWeight = true;
+    public bool isSpeedAdjustmentByWeight = false;
     int counter = 0;
     void Start()
     {

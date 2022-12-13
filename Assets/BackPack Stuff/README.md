@@ -1,7 +1,5 @@
 #Backpack system for vrchat sdk3.0 worlds
 
-import package
-
 #How-To-Use
 >example scene if needed
 
