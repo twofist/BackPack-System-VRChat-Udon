@@ -1,5 +1,7 @@
 #Backpack system for vrchat sdk3.0 worlds
 
+Make sure UdonSharp compiler is enabled for your project!
+
 #How-To-Use
 >example scene if needed
 
