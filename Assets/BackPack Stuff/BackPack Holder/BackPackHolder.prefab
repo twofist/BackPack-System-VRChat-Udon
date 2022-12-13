@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 2458938762736772724}
   - component: {fileID: 2833526621023595244}
   m_Layer: 22
-  m_Name: Cube
+  m_Name: Show Holder location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &837454412511656968
 Transform:
   m_ObjectHideFlags: 0
