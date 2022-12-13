@@ -9,9 +9,9 @@ public class BackPackHolder : UdonSharpBehaviour
     //public GameObject backPack;
 
     //[UdonSynced] public string backPackName;
-    [UdonSynced] public bool hasBackPack = false;
-    public VRCPlayerApi user;
-    public WorldManager worldManager;
+    [HideInInspector][UdonSynced] public bool hasBackPack = false;
+    [HideInInspector] public VRCPlayerApi user;
+    [HideInInspector] public WorldManager worldManager;
 
     void Start()
     {

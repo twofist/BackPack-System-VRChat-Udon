@@ -7,12 +7,12 @@ using VRC.Udon;
 
 public class BackPackManager : UdonSharpBehaviour
 {
-    [UdonSynced] public int combinedWeight = 0;
-    public WorldManager worldManager;
+    [HideInInspector][UdonSynced] public int combinedWeight = 0;
+    [HideInInspector] public WorldManager worldManager;
     BackPackHolder followHolder;
-    [UdonSynced] public string followHolderName;
-    [UdonSynced] public string previousFollowHolderName;
-    [UdonSynced] public int interactorID = 0;
+    [HideInInspector][UdonSynced] public string followHolderName;
+    [HideInInspector][UdonSynced] public string previousFollowHolderName;
+    [HideInInspector][UdonSynced] public int interactorID = 0;
     public ItemManager itemManager;
     void Start()
     {

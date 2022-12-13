@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 public class BackPackButton : UdonSharpBehaviour
 {
-    public int index = 0;
-    public int weight = 0;
-    public ItemManager manager;
+    [HideInInspector] public int index = 0;
+    [HideInInspector] public int weight = 0;
+    [HideInInspector] public ItemManager manager;
     public TMPro.TextMeshProUGUI txt;
-    public string customName;
+    [HideInInspector] public string customName;
     public Image image;
-    public Sprite sprite;
+    [HideInInspector] public Sprite sprite;
     void Start()
     {
 

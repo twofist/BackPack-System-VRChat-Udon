@@ -10,11 +10,15 @@ public class ItemManager : UdonSharpBehaviour
     public Transform UIContent;
     public GameObject UIButtonPrefab;
     public Transform itemSpawn;
-    [UdonSynced] public string itemName;
-    [UdonSynced] public int itemIndex;
-    [UdonSynced] public int buttonIndex;
-    public WorldManager worldManager;
+    [HideInInspector][UdonSynced] public string itemName;
+    [HideInInspector][UdonSynced] public int itemIndex;
+    [HideInInspector][UdonSynced] public int buttonIndex;
+    [HideInInspector] public WorldManager worldManager;
     public BackPackManager backPackManager;
+
+    public AudioClip audioAdd;
+    public AudioClip audioRemove;
+    public AudioSource audioSource;
     void Start()
     {
 
@@ -44,7 +48,8 @@ public class ItemManager : UdonSharpBehaviour
         bpButton.sprite = backPackItem.sprite;
         bpButton.manager = this;
         backPackManager.ChangeWeight(backPackItem.weight);
-        // itemName = "";
+        audioSource.clip = audioAdd;
+        audioSource.Play();
     }
 
     public void InitiateTakeOut(int index, int siblingIndex)
@@ -66,6 +71,8 @@ public class ItemManager : UdonSharpBehaviour
         item.gameObject.SetActive(true);
         backPackManager.ChangeWeight(-backPackItem.weight);
         Destroy(UIContent.GetChild(buttonIndex).gameObject);
+        audioSource.clip = audioRemove;
+        audioSource.Play();
     }
 
     public override void OnDeserialization()
