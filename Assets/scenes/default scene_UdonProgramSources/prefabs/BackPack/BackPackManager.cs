@@ -57,9 +57,10 @@ public class BackPackManager : UdonSharpBehaviour
         combinedWeight += amount;
         if (!worldManager.isSpeedAdjustmentByWeight) return;
         if (followHolder == null) return;
-        if (followHolder.user == null) return;
+        if (!followHolder.hasBackPack) return;
         followHolder.user.SetWalkSpeed(followHolder.user.GetWalkSpeed() - (combinedWeight / 100));
         followHolder.user.SetRunSpeed(followHolder.user.GetRunSpeed() - (combinedWeight / 100));
+
     }
 
     public override void OnPickup()
@@ -87,11 +88,8 @@ public class BackPackManager : UdonSharpBehaviour
         if (!CanRemoveBackPack()) return;
         if (worldManager.isSpeedAdjustmentByWeight)
         {
-            if (followHolder != null && followHolder.user != null)
-            {
-                followHolder.user.SetWalkSpeed();
-                followHolder.user.SetRunSpeed();
-            }
+            followHolder.user.SetWalkSpeed();
+            followHolder.user.SetRunSpeed();
         }
         if (followHolder != null)
         {
