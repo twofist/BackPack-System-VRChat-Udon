@@ -1854,7 +1854,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 70632ddfe8e71b04b8f90ef7e29a9e98,
+      objectReference: {fileID: 21300000, guid: 644caf5607820c7418cf0d248b12f33b,
         type: 3}
     - target: {fileID: 2404181946356129654, guid: e0205fa8401c4c34591feda4b937547c,
         type: 3}
@@ -1937,6 +1937,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomObject (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8420317412115847343, guid: 243f5a9a97c4ba54fb832062b9897be1,
+        type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e561d0406779ab948b7f155498d101ee,
+        type: 3}
     - target: {fileID: 8420317412115847343, guid: 243f5a9a97c4ba54fb832062b9897be1,
         type: 3}
       propertyPath: serializationData.Prefab

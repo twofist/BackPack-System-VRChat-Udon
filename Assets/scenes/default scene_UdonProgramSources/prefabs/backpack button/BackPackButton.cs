@@ -16,17 +16,19 @@ public class BackPackButton : UdonSharpBehaviour
     [HideInInspector] public Sprite sprite;
     void Start()
     {
-
+        if (customName != null)
+        {
+            txt.text = customName;
+        }
+        if (sprite != null)
+        {
+            image.sprite = sprite;
+        }
     }
 
     public void OnButtonPress()
     {
         Networking.SetOwner(Networking.LocalPlayer, gameObject);
-        txt.text = customName;
-        if (sprite != null)
-        {
-            image.sprite = sprite;
-        }
         manager.InitiateTakeOut(index, transform.GetSiblingIndex());
     }
 
