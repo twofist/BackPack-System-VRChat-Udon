@@ -9,7 +9,7 @@ public class BackPackButton : UdonSharpBehaviour
 {
     public int index = 0;
     public int weight = 0;
-    public BackPackManager manager;
+    public ItemManager manager;
     public TMPro.TextMeshProUGUI txt;
     public string customName;
     public Image image;

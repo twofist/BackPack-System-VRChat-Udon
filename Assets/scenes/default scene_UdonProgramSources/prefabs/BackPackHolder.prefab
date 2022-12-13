@@ -231,6 +231,7 @@ MonoBehaviour:
       Entry: 6
       Data: 
   _udonSharpBackingUdonBehaviour: {fileID: 8128085826971258816}
+  hasBackPack: 0
   worldManager: {fileID: 0}
 --- !u!114 &8128085826971258816
 MonoBehaviour:
@@ -251,7 +252,7 @@ MonoBehaviour:
   SynchronizePosition: 0
   AllowCollisionOwnershipTransfer: 0
   Reliable: 0
-  _syncMethod: 3
+  _syncMethod: 2
   serializedProgramAsset: {fileID: 11400000, guid: 4a290677b8164614fa659bce2c2ca79f,
     type: 2}
   programSource: {fileID: 11400000, guid: 1887c48d60f7b4a41a2b3ada602f47bd, type: 2}

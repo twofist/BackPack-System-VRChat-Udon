@@ -30,8 +30,8 @@ TagManager:
   - reserved4
   - BackPackHolder
   - BackPackItem
-  - 
-  - 
+  - BackPack
+  - BackPackLid
   - 
   - 
   - 

@@ -164,7 +164,7 @@ MonoBehaviour:
       Data: 8|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BackPackManager, Assembly-CSharp
+      Data: ItemManager, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
