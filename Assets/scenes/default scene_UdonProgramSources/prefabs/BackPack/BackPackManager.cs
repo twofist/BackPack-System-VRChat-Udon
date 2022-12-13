@@ -42,8 +42,6 @@ public class BackPackManager : UdonSharpBehaviour
                 Networking.SetOwner(holder.user, gameObject);
                 followHolderName = holder.gameObject.name;
                 interactorID = holder.user.playerId;
-                // RequestSerialization();
-                // SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "AttachBackPackToHolder");
             }
         }
         if (other.gameObject.GetComponent<BackPackItem>())
@@ -69,7 +67,6 @@ public class BackPackManager : UdonSharpBehaviour
         {
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
             interactorID = Networking.LocalPlayer.playerId;
-            // RequestSerialization();
             SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "RemoveBackPackFromHolder");
         }
 
