@@ -1,10 +1,11 @@
 ## Backpack system for vrchat sdk3.0 worlds  
 
 this is a Backpack system for vrchat, synced for late joiners!  
-players can Attach one backpack on their back and only the attached player can remove it  
-players can attach a backpack to another player when not already having a backpack attached  
-everyone can open the backpack and take out items that are stored  
-everyone can pick up a backpack and move it around  
+- world creator can choose the items sprite, name, and weight incase they want to slow down the player the more items they have in their backpack
+- players can Attach one backpack on their back and only the attached player can remove it  
+- players can attach a backpack to another player when not already having a backpack attached  
+- everyone can open the backpack and take out items that are stored  
+- everyone can pick up a backpack and move it around  
 
 # Make sure UdonSharp compiler is enabled for your project!  
 
