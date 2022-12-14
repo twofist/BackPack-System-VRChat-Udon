@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class BackPackButton : UdonSharpBehaviour
 {
-    [HideInInspector] public int index = 0;
     [HideInInspector] public int weight = 0;
     [HideInInspector] public ItemManager manager;
     public TMPro.TextMeshProUGUI txt;
@@ -29,7 +28,7 @@ public class BackPackButton : UdonSharpBehaviour
     public void OnButtonPress()
     {
         Networking.SetOwner(Networking.LocalPlayer, gameObject);
-        manager.InitiateTakeOut(index, transform.GetSiblingIndex());
+        manager.InitiateTakeOut(transform.GetSiblingIndex());
     }
 
 }

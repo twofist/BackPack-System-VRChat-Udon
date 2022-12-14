@@ -1,17 +1,25 @@
-#Backpack system for vrchat sdk3.0 worlds  
+## Backpack system for vrchat sdk3.0 worlds  
 
-Make sure UdonSharp compiler is enabled for your project!  
+this is a Backpack system for vrchat, synced for late joiners!  
+players can Attach one backpack on their back and only the attached player can remove it  
+players can attach a backpack to another player when not already having a backpack attached  
+everyone can open the backpack and take out items that are stored  
+everyone can pick up a backpack and move it around  
 
-#How-To-Use  
->example scene if needed
+# Make sure UdonSharp compiler is enabled for your project!  
 
-Add Layers to Project  
-"BackPackLid" - go into the Backpack prefab to the Lid, change layer  
-"BackPack" - go into the Backpack prefab, change layer (no children)  
-"BackPackItem" - go into RandomObject prefabs, change layer (no children)  
+## How-To-Use  
+>example scene with basic items and backpacks
+
+### Add Layers to Project / change Project Settings for layers  
+go to any GameObject in the top right change layer then "Add Layers" and create "BackPack" and "BackPackHolder"  
+"BackPack" - go into the "BackPack" prefab, change layer to "BackPack" (no to children), go to the Lid inside the Backpack prefab, change layer to "BackPack"  
 "BackPackHolder" - go into BackpackHolder prefab, change layer  
-Set the layers up as in this image  
-![project settings](https://i.imgur.com/vDjGii1.png)
+
+To make it work we will need to add 2 layers, and change what other layers they will interact with  
+>at the top go to "Edit" then go to Project Settings and then Physics  
+Set the layers up as in this image, marked in red  
+![project settings](https://i.imgur.com/i0r7H3G.png)
 
 Drag "WorldManager" prefab into your world  
 Check "IsSpeedAdjustedByWeight" if you want players to get slowed down by weight  
@@ -19,7 +27,6 @@ Check "IsSpeedAdjustedByWeight" if you want players to get slowed down by weight
 Drag in as many Backpack prefabs as you want in your world  
 
 Give items you want to be able to interact with the backpack the "BackPackItem" Script  
-Give item the "BackPackItem" layer
 
 Change the weight/customName/Sprite to whatever you want  
 

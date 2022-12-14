@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 1433872307808331066}
   - component: {fileID: 1433872307808331069}
   - component: {fileID: 3207225150824703698}
-  m_Layer: 24
+  m_Layer: 23
   m_Name: BackPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ MonoBehaviour:
   ThrowVelocityBoostScale: 1
   currentlyHeldBy: {fileID: 0}
   pickupable: 1
-  proximity: 0.1
+  proximity: 0.01
 --- !u!114 &1433872307808331066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,8 +305,7 @@ GameObject:
   - component: {fileID: 8261702700933692152}
   - component: {fileID: 5551449164883944541}
   - component: {fileID: 2417620974818908627}
-  - component: {fileID: 5760912301505944862}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: backpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,19 +373,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5760912301505944862
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769234872325668384}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.01906854, y: 0.026896415, z: 0.03409639}
-  m_Center: {x: -0.0027587996, y: -0.0015279078, z: -0.0031028742}
 --- !u!1 &1920327742837242271
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7446968890482006521}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: ItemSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +397,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920327742837242271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.021, y: 2.442, z: -1.526}
+  m_LocalPosition: {x: 0.021, y: 2.09, z: -2.407}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1433872307808331068}
@@ -426,7 +412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9023154167256065437}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: ItemHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 5510708648098126809}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -818,7 +804,6 @@ MonoBehaviour:
     type: 3}
   itemSpawn: {fileID: 7446968890482006521}
   itemName: 
-  itemIndex: 0
   buttonIndex: 0
   worldManager: {fileID: 0}
   backPackManager: {fileID: 1433872307808331066}
@@ -1053,7 +1038,7 @@ GameObject:
   - component: {fileID: 2521481117415785722}
   - component: {fileID: 410264544672062326}
   - component: {fileID: 8983756013959287358}
-  m_Layer: 25
+  m_Layer: 23
   m_Name: Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1137,8 +1122,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.024685003, y: 0.027741957, z: 0.012341743}
-  m_Center: {x: -0.006083361, y: -0.000013788476, z: 0.016292002}
+  m_Size: {x: 0.021399174, y: 0.027741961, z: 0.012341744}
+  m_Center: {x: -0.004440431, y: -0.000013788473, z: 0.016292002}
 --- !u!95 &2521481117415785722
 Animator:
   serializedVersion: 3
@@ -1197,7 +1182,7 @@ MonoBehaviour:
   interactTextPlacement: {fileID: 0}
   interactText: Use
   interactTextGO: {fileID: 0}
-  proximity: 0.1
+  proximity: 0.01
   SynchronizePosition: 0
   AllowCollisionOwnershipTransfer: 0
   Reliable: 0

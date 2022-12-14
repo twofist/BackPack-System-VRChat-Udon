@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 2404181946356129609}
   - component: {fileID: 1478748133800721052}
   - component: {fileID: 8505707357904737351}
-  m_Layer: 23
+  m_Layer: 13
   m_Name: RandomObject (1)
-  m_TagString: BackPackInteraction
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 2404181947594117686}
   - component: {fileID: 2404181947594117685}
   - component: {fileID: 2404181947594117684}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

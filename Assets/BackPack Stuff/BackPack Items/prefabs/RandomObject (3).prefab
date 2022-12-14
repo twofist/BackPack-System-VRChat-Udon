@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8093217588047570369}
   - component: {fileID: 4880600803151942339}
   - component: {fileID: 2118971999306145103}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 8420317412115847312}
   - component: {fileID: 4684365090369305925}
   - component: {fileID: 2561971399863554974}
-  m_Layer: 23
+  m_Layer: 13
   m_Name: RandomObject (3)
-  m_TagString: BackPackInteraction
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

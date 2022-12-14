@@ -11,7 +11,6 @@ public class ItemManager : UdonSharpBehaviour
     public GameObject UIButtonPrefab;
     public Transform itemSpawn;
     [HideInInspector][UdonSynced] public string itemName;
-    [HideInInspector][UdonSynced] public int itemIndex;
     [HideInInspector][UdonSynced] public int buttonIndex;
     [HideInInspector] public WorldManager worldManager;
     public BackPackManager backPackManager;
@@ -43,7 +42,6 @@ public class ItemManager : UdonSharpBehaviour
         item.gameObject.SetActive(false);
         GameObject button = Instantiate(UIButtonPrefab, UIContent);
         BackPackButton bpButton = button.GetComponent<BackPackButton>();
-        bpButton.index = itemHolder.childCount - 1;
         bpButton.customName = backPackItem.customName;
         bpButton.sprite = backPackItem.sprite;
         bpButton.manager = this;
@@ -52,23 +50,29 @@ public class ItemManager : UdonSharpBehaviour
         audioSource.Play();
     }
 
-    public void InitiateTakeOut(int index, int siblingIndex)
+    public void InitiateTakeOut(int siblingIndex)
     {
         Networking.SetOwner(Networking.LocalPlayer, gameObject);
-        itemIndex = index;
         buttonIndex = siblingIndex;
         SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "TakeItemOutOfBackPack");
     }
 
     public void TakeItemOutOfBackPack()
     {
-        Transform item = itemHolder.GetChild(itemIndex);
+        if (buttonIndex > itemHolder.childCount - 1 || buttonIndex > UIContent.childCount - 1) return;
+        Transform item = itemHolder.GetChild(buttonIndex);
         if (item == null) return;
         BackPackItem backPackItem = item.gameObject.GetComponent<BackPackItem>();
         if (backPackItem == null) return;
-        item.position = item.TransformPoint(itemSpawn.position);
         item.SetParent(null);
+        item.position = itemSpawn.transform.TransformPoint(itemSpawn.position);
         item.gameObject.SetActive(true);
+        Rigidbody rb = item.gameObject.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
         backPackManager.ChangeWeight(-backPackItem.weight);
         Destroy(UIContent.GetChild(buttonIndex).gameObject);
         audioSource.clip = audioRemove;
