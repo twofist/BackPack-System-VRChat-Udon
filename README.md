@@ -1,5 +1,9 @@
 ## Backpack system for vrchat sdk3.0 worlds  
 
+
+https://user-images.githubusercontent.com/13707992/207662114-ea92ac09-d624-47fc-a912-7c33c468c1d8.mp4
+
+
 this is a Backpack system for vrchat, synced for late joiners!  
 - world creator can choose the items sprite, name, and weight incase they want to slow down the player the more items they have in their backpack
 - players can Attach one backpack on their back and only the attached player can remove it  
