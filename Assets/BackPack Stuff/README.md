@@ -11,12 +11,13 @@ everyone can pick up a backpack and move it around
 ## How-To-Use  
 >example scene with basic items and backpacks
 
-### Add Layers to Project / change Project Settings for layers  
-go to any GameObject in the top right change layer then "Add Layers" and create "BackPack" and "BackPackHolder"  
-"BackPack" - go into the "BackPack" prefab, change layer to "BackPack" (no to children), go to the Lid inside the Backpack prefab, change layer to "BackPack"  
-"BackPackHolder" - go into BackpackHolder prefab, change layer  
-
 To make it work we will need to add 2 layers, and change what other layers they will interact with  
+### Add Layers to Project / change Project Settings for layers  
+go to any GameObject in the top right then change layer then "Add Layers" and create "BackPack" and "BackPackHolder"  
+1. "BackPack" - go into the "BackPack" prefab, change layer to "BackPack" (no to children), go to the Lid inside the Backpack prefab, change layer to "BackPack"  
+2. "BackPackHolder" - go into BackpackHolder prefab, change layer  
+
+
 >at the top go to "Edit" then go to Project Settings and then Physics  
 Set the layers up as in this image, marked in red  
 ![project settings](https://i.imgur.com/i0r7H3G.png)
