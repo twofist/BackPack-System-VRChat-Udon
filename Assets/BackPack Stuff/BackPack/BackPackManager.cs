@@ -113,4 +113,15 @@ public class BackPackManager : UdonSharpBehaviour
         ChangeWeight(0);
         previousFollowHolderName = followHolderName;
     }
+
+    public override void OnPlayerLeft(VRCPlayerApi player)
+    {
+        base.OnPlayerLeft(player);
+        if ("BackPackHolder (" + player.playerId + ")" == followHolderName)
+        {
+            RemoveBackPackFromHolder();
+            GameObject obj = GameObject.Find("BackPackHolder (" + player.playerId + ")");
+            Destroy(obj);
+        }
+    }
 }

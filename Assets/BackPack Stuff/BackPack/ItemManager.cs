@@ -65,7 +65,7 @@ public class ItemManager : UdonSharpBehaviour
         BackPackItem backPackItem = item.gameObject.GetComponent<BackPackItem>();
         if (backPackItem == null) return;
         item.SetParent(null);
-        item.position = itemSpawn.transform.TransformPoint(itemSpawn.position);
+        item.position = itemSpawn.position;
         item.gameObject.SetActive(true);
         Rigidbody rb = item.gameObject.GetComponent<Rigidbody>();
         if (rb != null)
