@@ -133,7 +133,10 @@ public class BackPackManager : UdonSharpBehaviour
         if ("BackPackHolder (" + player.playerId + ")" == followHolderName)
         {
             RemoveBackPackFromHolder();
-            GameObject obj = GameObject.Find("BackPackHolder (" + player.playerId + ")");
+        }
+        GameObject obj = GameObject.Find("BackPackHolder (" + player.playerId + ")");
+        if (obj != null)
+        {
             Destroy(obj);
         }
     }
