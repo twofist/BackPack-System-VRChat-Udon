@@ -44,7 +44,7 @@ public class BackPackManager : UdonSharpBehaviour
                 interactorID = holder.user.playerId;
             }
         }
-        if (other.gameObject.GetComponent<BackPackItem>())
+        if (other.gameObject.GetComponent<BackPackItem>() != null)
         {
             itemManager.HandleItemTouched(other.gameObject);
         }
