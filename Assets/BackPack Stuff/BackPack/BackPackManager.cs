@@ -28,7 +28,14 @@ public class BackPackManager : UdonSharpBehaviour
         }
         if (previousFollowHolderName != followHolderName)
         {
-            OnNewFollowHolder();
+            if (canAttachToHolder())
+            {
+                OnNewFollowHolder();
+            }
+            else
+            {
+                followHolderName = previousFollowHolderName;
+            }
         }
     }
 
@@ -93,6 +100,12 @@ public class BackPackManager : UdonSharpBehaviour
             followHolder.hasBackPack = false;
         }
         followHolderName = null;
+        followHolder = null;
+    }
+    bool canAttachToHolder()
+    {
+        if (followHolder != null) return false;
+        return true;
     }
 
     void OnNewFollowHolder()
