@@ -6,7 +6,7 @@ using VRC.Udon;
 
 public class BackPackHolder : UdonSharpBehaviour
 {
-    [HideInInspector][UdonSynced] public bool hasBackPack = false;
+    // [HideInInspector][UdonSynced] public bool hasBackPack = false;
     [HideInInspector] public VRCPlayerApi user;
     [HideInInspector] public WorldManager worldManager;
 

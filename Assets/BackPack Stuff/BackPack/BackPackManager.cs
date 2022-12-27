@@ -9,10 +9,12 @@ public class BackPackManager : UdonSharpBehaviour
 {
     [HideInInspector][UdonSynced] public int combinedWeight = 0;
     [HideInInspector] public WorldManager worldManager;
-    BackPackHolder followHolder;
-    [HideInInspector][UdonSynced] public string followHolderName;
-    [HideInInspector][UdonSynced] public string previousFollowHolderName;
+    BackPackHolder backpackHolder;
+    [HideInInspector][UdonSynced] public string interactingBackpackHolderName;
+    [HideInInspector][UdonSynced] public string currentBackpackHolderName;
     [HideInInspector][UdonSynced] public int interactorID = 0;
+    [HideInInspector][UdonSynced] public int backpackOwnerID = 0;
+    [HideInInspector][UdonSynced] public bool isAttached = false;
     public ItemManager itemManager;
     void Start()
     {
@@ -21,22 +23,34 @@ public class BackPackManager : UdonSharpBehaviour
 
     private void Update()
     {
-        if (followHolder != null && followHolder.hasBackPack)
+        if (backpackHolder != null && isAttached)
         {
-            transform.position = followHolder.transform.position;
-            transform.rotation = followHolder.transform.rotation;
+            transform.position = backpackHolder.transform.position;
+            transform.rotation = backpackHolder.transform.rotation;
         }
-        if (previousFollowHolderName != followHolderName)
+        if (HasNewBackPackHolderInteraction())
         {
-            if (canAttachToHolder())
-            {
-                OnNewFollowHolder();
-            }
-            else
-            {
-                followHolderName = previousFollowHolderName;
-            }
+            OnNewBackPackHolderInteraction();
         }
+    }
+
+    bool HasNewBackPackHolderInteraction()
+    {
+        if (interactingBackpackHolderName != null && interactingBackpackHolderName != currentBackpackHolderName)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    void OnNewBackPackHolderInteraction()
+    {
+        if (canAttachToHolder())
+        {
+            OnNewFollowHolder();
+        }
+        interactingBackpackHolderName = null;
+        interactorID = 0;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,14 +58,14 @@ public class BackPackManager : UdonSharpBehaviour
         if (other.transform.parent != null)
         {
             BackPackHolder holder = other.transform.parent.gameObject.GetComponent<BackPackHolder>();
-            if (holder != null && !holder.hasBackPack)
+            if (holder != null && !isAttached && !PlayerHasBackPack(holder.user.playerId))
             {
                 Networking.SetOwner(holder.user, gameObject);
-                followHolderName = holder.gameObject.name;
+                interactingBackpackHolderName = holder.gameObject.name;
                 interactorID = holder.user.playerId;
             }
         }
-        if (other.gameObject.GetComponent<BackPackItem>() != null)
+        if (other.gameObject.GetComponent<BackPackItem>() != null && !isAttached)
         {
             itemManager.HandleItemTouched(other.gameObject);
         }
@@ -61,20 +75,23 @@ public class BackPackManager : UdonSharpBehaviour
     {
         combinedWeight += amount;
         if (!worldManager.isSpeedAdjustmentByWeight) return;
-        if (followHolder == null) return;
-        if (!followHolder.hasBackPack) return;
-        followHolder.user.SetWalkSpeed(followHolder.user.GetWalkSpeed() - (combinedWeight / 100));
-        followHolder.user.SetRunSpeed(followHolder.user.GetRunSpeed() - (combinedWeight / 100));
+        if (backpackHolder == null) return;
+        if (!isAttached) return;
+        backpackHolder.user.SetWalkSpeed(backpackHolder.user.GetWalkSpeed() - (combinedWeight / 100));
+        backpackHolder.user.SetRunSpeed(backpackHolder.user.GetRunSpeed() - (combinedWeight / 100));
 
     }
 
     public override void OnPickup()
     {
-        if (followHolder != null && followHolder.hasBackPack)
+        if (isAttached)
         {
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
             interactorID = Networking.LocalPlayer.playerId;
-            SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "RemoveBackPackFromHolder");
+            if (CanRemoveBackPack())
+            {
+                SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "RemoveBackPackFromHolder");
+            }
         }
 
         base.OnPickup();
@@ -82,55 +99,58 @@ public class BackPackManager : UdonSharpBehaviour
 
     bool CanRemoveBackPack()
     {
-        if (followHolder == null) return false;
-        if (followHolder.user.playerId != interactorID) return false;
+        if (backpackOwnerID != 0 && backpackOwnerID == interactorID) return true;
         return true;
     }
 
     public void RemoveBackPackFromHolder()
     {
-        if (!CanRemoveBackPack()) return;
         if (worldManager.isSpeedAdjustmentByWeight)
         {
-            followHolder.user.SetWalkSpeed();
-            followHolder.user.SetRunSpeed();
+            backpackHolder.user.SetWalkSpeed();
+            backpackHolder.user.SetRunSpeed();
         }
-        if (followHolder != null)
-        {
-            followHolder.hasBackPack = false;
-        }
-        followHolderName = null;
-        followHolder = null;
+        currentBackpackHolderName = null;
+        interactingBackpackHolderName = null;
+        interactorID = 0;
+        backpackHolder = null;
+        isAttached = false;
+        backpackOwnerID = 0;
+        gameObject.name = "backpack";
     }
     bool canAttachToHolder()
     {
-        if (followHolder != null) return false;
-        return true;
+        if (!isAttached && !PlayerHasBackPack(interactorID)) return true;
+        return false;
     }
 
     void OnNewFollowHolder()
     {
-        GameObject obj = GameObject.Find(followHolderName);
+        GameObject obj = GameObject.Find(interactingBackpackHolderName);
         if (obj != null)
         {
-            followHolder = obj.GetComponent<BackPackHolder>();
-            if (followHolder != null)
+            backpackHolder = obj.GetComponent<BackPackHolder>();
+            if (backpackHolder != null)
             {
-                followHolder.hasBackPack = true;
+                backpackOwnerID = backpackHolder.user.playerId;
+                gameObject.name = "backpack (" + backpackHolder.user.playerId + ")";
             }
         }
         else
         {
-            followHolder = null;
+            backpackHolder = null;
         }
         ChangeWeight(0);
-        previousFollowHolderName = followHolderName;
+        currentBackpackHolderName = interactingBackpackHolderName;
+        interactingBackpackHolderName = null;
+        isAttached = true;
+        interactorID = 0;
     }
 
     public override void OnPlayerLeft(VRCPlayerApi player)
     {
         base.OnPlayerLeft(player);
-        if ("BackPackHolder (" + player.playerId + ")" == followHolderName)
+        if (GetPlayerAttachedBackPack(player.playerId).name == gameObject.name)
         {
             RemoveBackPackFromHolder();
         }
@@ -139,5 +159,24 @@ public class BackPackManager : UdonSharpBehaviour
         {
             Destroy(obj);
         }
+    }
+
+    GameObject GetPlayerAttachedBackPack(int id)
+    {
+        GameObject obj = GameObject.Find("backpack (" + id + ")");
+        if (obj != null)
+        {
+            return obj;
+        }
+        return null;
+    }
+
+    bool PlayerHasBackPack(int id)
+    {
+        if (GetPlayerAttachedBackPack(id) != null)
+        {
+            return true;
+        }
+        return false;
     }
 }
